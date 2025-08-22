@@ -6,8 +6,8 @@ from pathlib import Path
 class EngineParse:
     def __init__(self):
         self.parser = argparse.ArgumentParser()
-        self.parser.add_argument("--file", help="Путь к CSV-файлу для обработки.")
-        self.parser.add_argument("--report", help="Фильтрация строк по условию.")
+        self.parser.add_argument("--file", help="Путь к .log-файлу, из которого будут распарсены JSON данные")
+        self.parser.add_argument("--report", help="Тип агрегации и создание соответствущей таблицы")
         self.args = self.parser.parse_args()
 
     @property
