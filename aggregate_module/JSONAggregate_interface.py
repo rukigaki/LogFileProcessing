@@ -2,13 +2,17 @@ import json
 
 from parser.parser_engine import EngineParse
 from aggregate_module import AverageHandler
+from constants import JSON
 
 
 
 class JSONAggregateInterface:
     def __init__(self) -> None:
         self.parsed_args = EngineParse()
-        self.data = self.__prepare_data(file_path=self.parsed_args.get_file_path)
+        self.data = self.__prepare_data(
+            file_path=self.parsed_args.get_file_path,
+            date=self.parsed_args.get_date_value
+        )
 
         self.average = AverageHandler()
         ...
@@ -23,7 +27,7 @@ class JSONAggregateInterface:
 
 
     @staticmethod
-    def __prepare_data(file_path) -> list[dict]:
+    def __prepare_data(file_path, date) -> list[dict]:
         data = []
 
         with open(file_path) as file:
@@ -31,6 +35,10 @@ class JSONAggregateInterface:
             for str_json in str_jsons:
                 dict_obj = json.loads(str_json)
                 data.append(dict_obj)
+        try:
+            data = [dict_obj for dict_obj in data if date in dict_obj[JSON.TIMESTAMP.value]]
+        except TypeError:
+            return data
 
         return data
 

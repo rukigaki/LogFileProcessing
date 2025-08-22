@@ -8,6 +8,7 @@ class EngineParse:
         self.parser = argparse.ArgumentParser()
         self.parser.add_argument("--file", help="Путь к .log-файлу, из которого будут распарсены JSON данные")
         self.parser.add_argument("--report", help="Тип агрегации и создание соответствущей таблицы")
+        self.parser.add_argument("--date", help="Фильтрация по дате")
         self.args = self.parser.parse_args()
 
     @property
@@ -17,3 +18,7 @@ class EngineParse:
     @property
     def get_report_value(self) -> str:
         return self.args.report
+
+    @property
+    def get_date_value(self) -> str:
+        return self.args.date

@@ -11,6 +11,7 @@ class ReportParam(Enum):
     ...
 
 class JSON(Enum):
+    TIMESTAMP = "@timestamp"
     URL = "url"
     RESPONSE_TIME = "response_time"
     ...
