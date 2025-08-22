@@ -1,3 +1,3 @@
 # LogFileProcessing
 
-![file](assets/averag1.png)
+![file](assets/average1.png)
